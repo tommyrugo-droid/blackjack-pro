@@ -1,0 +1,2619 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 10px;
+            padding-top: 60px;
+        }
+        .menu { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: #1a1a1a; 
+            padding: 15px; 
+            display: flex; 
+            gap: 10px;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+        .menu button { 
+            flex: 1; 
+            padding: 10px; 
+            background: #333; 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .menu button.active { background: #ffd700; color: #000; font-weight: bold; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .card { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; }
+        .btn { 
+            padding: 12px 20px; 
+            margin: 5px; 
+            background: #ffd700; 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-secondary { background: #444; color: #fff; }
+        .btn-danger { background: #ff4444; color: #fff; }
+        .game-table { 
+            background: #0d4a26; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin: 20px 0;
+            border: 3px solid #8b4513;
+        }
+        .cards { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .card-item { 
+            width: 60px; 
+            height: 85px; 
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            color: #000; 
+            border-radius: 8px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .card-item .suit { font-size: 24px; line-height: 1; }
+        .card-item .rank { font-size: 18px; }
+        .red { color: #ff0000; }
+        .black { color: #000; }
+        .hidden { 
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            border: 2px solid #ffd700;
+        }
+        .hidden::after {
+            content: '🎰';
+            font-size: 30px;
+        }
+        .bet-controls { display: flex; gap: 15px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .bet-control { background: #222; padding: 15px; border-radius: 10px; text-align: center; min-width: 100px; }
+        .bet-control p { margin-bottom: 8px; color: #aaa; font-size: 12px; }
+        .bet-btn { 
+            padding: 8px 15px; 
+            background: #444; 
+            color: #fff; 
+            border: 1px solid #ffd700;
+            border-radius: 5 creato il codice completo! Ora ti spiego come salvarlo e usarlo.
+
+## 📋 PASSO 1: Copia il codice
+
+Tocca e tieni premuto sul codice qui sotto, poi seleziona **"Seleziona tutto"** e **"Copia"**:
+
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 10px;
+            padding-top: 60px;
+        }
+        .menu { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: #1a1a1a; 
+            padding: 15px; 
+            display: flex; 
+            gap: 10px;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+        .menu button { 
+            flex: 1; 
+            padding: 10px; 
+            background: #333; 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .menu button.active { background: #ffd700; color: #000; font-weight: bold; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .card { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; }
+        .btn { 
+            padding: 12px 20px; 
+            margin: 5px; 
+            background: #ffd700; 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-secondary { background: #444; color: #fff; }
+        .btn-danger { background: #ff4444; color: #fff; }
+        .game-table { 
+            background: #0d4a26; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin: 20px 0;
+            border: 3px solid #8b4513;
+        }
+        .cards { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .card-item { 
+            width: 60px; 
+            height: 85px; 
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            color: #000; 
+            border-radius: 8px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .card-item .suit { font-size: 24px; line-height: 1; }
+        .card-item .rank { font-size: 18px; }
+        .red { color: #ff0000; }
+        .black { color: #000; }
+        .hidden { 
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            border: 2px solid #ffd700;
+        }
+        .hidden::after {
+            content: '🎰';
+            font-size: 30px;
+        }
+        .bet-controls { display: flex; gap: 15px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .bet-control { background: #222; padding: 15px; border-radius: 10px; text-align: center; min-width: 100px; }
+        .bet-control p { margin-bottom: 8px; color: #aaa; font-size: 12px; }
+        .bet-btn { 
+            padding: 8px 15px; 
+            background: #444; 
+            color: #fff; 
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bet-amount { 
+            display: inline-block; 
+            min-width: 40px; 
+            font-size: 20px; 
+            font-weight: bold;
+            color: #ffd700;
+        }
+        select { 
+            padding: 10px; 
+            margin: 5px; 
+            background: #333; 
+            color: #fff; 
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .result { 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .win { background: rgba(0,255,0,0.2); color: #0f0; border: 2px solid #0f0; }
+        .lose { background: rgba(255,0,0,0.2); color: #f00; border: 2px solid #f00; }
+        .push { background: rgba(255,215,0,0.2); color: #ffd700; border: 2px solid #ffd700; }
+        .blackjack-win { 
+            background: linear-gradient(135deg, rgba(255,215,0,0.3) 0%, rgba(255,0,255,0.3) 100%);
+            color: #ffd700; 
+            border: 2px solid #ffd700;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.8); }
+        }
+        .balance { 
+            position: fixed; 
+            top: 70px; 
+            right: 10px; 
+            background: #1a1a1a; 
+            padding: 10px 15px; 
+            border-radius: 8px;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 999;
+        }
+        .hand-title { color: #ffd700; font-size: 18px; margin-bottom: 10px; text-transform: uppercase; }
+        .hand-value { color: #0f0; font-size: 16px; margin-top: 10px; font-weight: bold; }
+        .advice-panel { background: rgba(0,255,0,0.1); border: 2px solid #0f0; padding: 15px; border-radius: 10px; margin: 15px 0; }
+        .advice-title { color: #0f0; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
+        .count-display { display: flex; gap: 20px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .count-box { background: #222; padding: 15px; border-radius: 8px; text-align: center; min-width: 100px; }
+        .count-label { color: #888; font-size: 12px; }
+        .count-value { color: #ffd700; font-size: 24px; font-weight: bold; }
+        .strategy-result { background: rgba(255,215,0,0.1); border: 2px solid #ffd700; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: center; }
+        .strategy-action { font-size: 28px; color: #ffd700; font-weight: bold; margin: 10px 0; }
+        .suit-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0; }
+        .suit-btn { 
+            padding: 15px; 
+            background: #333; 
+            border: 2px solid #555;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .suit-btn.selected { border-color: #ffd700; background: rgba(255,215,0,0.2); }
+        .rank-selector { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 10px 0; }
+        .rank-btn { 
+            padding: 15px 5px;
+            background: #444;
+            border: 2px solid #555;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .rank-btn:active { background: #ffd700; color: #000; }
+        .hand-display { 
+            min-height: 100px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            border: 2px dashed #555;
+        }
+        .hand-display.has-cards { border-style: solid; border-color: #ffd700; }
+        .remove-btn { 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            width: 20px; 
+            height: 20px; 
+            background: #ff4444; 
+            color: #fff; 
+            border-radius: 50%;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .side-bet-win { 
+            background: rgba(0,255,0,0.15); 
+            border-left: 4px solid #0f0; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .side-bet-lose { 
+            background: rgba(255,0,0,0.15); 
+            border-left: 4px solid #f00; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        h3 { color: #ffd700; margin-bottom: 10px; }
+        .game-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+        .game-btn { padding: 15px 25px; font-size: 16px; border: none; border-radius: 10px; font-weight: bold; }
+        .btn-hit { background: #0f0; color: #000; }
+        .btn-stand { background: #f00; color: #fff; }
+        .btn-double { background: #4488ff; color: #fff; }
+        .btn-split { background: #ff00ff; color: #fff; }
+        .btn-deal { background: #ffd700; color: #000; font-size: 20px; padding: 20px 40px; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button onclick="showSection('counting')" id="btn-counting" class="active">📊 Counting</button>
+        <button onclick="showSection('game')" id="btn-game">🎮 Gioca</button>
+    </div>
+    
+    <div class="balance">€<span id="balance">1000</span></div>
+
+    <!-- SEZIONE COUNTING COMPLETA -->
+    <div id="counting" class="section active">
+        <div class="count-display">
+            <div class="count-box">
+                <div class="count-label">Running Count</div>
+                <div class="count-value" id="running-count">0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">True Count</div>
+                <div class="count-value" id="true-count">0.0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">Mazzi</div>
+                <div class="count-value" id="decks-left">6.0</div>
+            </div>
+        </div>
+
+        <div class="advice-panel">
+            <div class="advice-title">💰 Consiglio Puntata</div>
+            <p>Base: <strong id="adv-main">5€</strong> | 21+3: <strong id="adv-213">1€</strong> | Pairs: <strong id="adv-pairs">1€</strong></p>
+            <p>Totale: <strong id="adv-total" style="color: #ffd700; font-size: 20px;">7€</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>🎴 Le tue carte</h3>
+            <p style="color: #888; font-size: 12px;">1. Seleziona il seme:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('player', '♥')">♥<br><span style="font-size: 10px;">Cuori</span></div>
+                <div creato il codice completo! Ora ti spiego come salvarlo e usarlo.
+
+## 📋 PASSO 1: Copia il codice
+
+Tocca e tieni premuto sul codice qui sotto, poi seleziona **"Seleziona tutto"** e **"Copia"**:
+
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 10px;
+            padding-top: 60px;
+        }
+        .menu { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: #1a1a1a; 
+            padding: 15px; 
+            display: flex; 
+            gap: 10px;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+        .menu button { 
+            flex: 1; 
+            padding: 10px; 
+            background: #333; 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .menu button.active { background: #ffd700; color: #000; font-weight: bold; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .card { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; }
+        .btn { 
+            padding: 12px 20px; 
+            margin: 5px; 
+            background: #ffd700; 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-secondary { background: #444; color: #fff; }
+        .btn-danger { background: #ff4444; color: #fff; }
+        .game-table { 
+            background: #0d4a26; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin: 20px 0;
+            border: 3px solid #8b4513;
+        }
+        .cards { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .card-item { 
+            width: 60px; 
+            height: 85px; 
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            color: #000; 
+            border-radius: 8px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .card-item .suit { font-size: 24px; line-height: 1; }
+        .card-item .rank { font-size: 18px; }
+        .red { color: #ff0000; }
+        .black { color: #000; }
+        .hidden { 
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            border: 2px solid #ffd700;
+        }
+        .hidden::after {
+            content: '🎰';
+            font-size: 30px;
+        }
+        .bet-controls { display: flex; gap: 15px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .bet-control { background: #222; padding: 15px; border-radius: 10px; text-align: center; min-width: 100px; }
+        .bet-control p { margin-bottom: 8px; color: #aaa; font-size: 12px; }
+        .bet-btn { 
+            padding: 8px 15px; 
+            background: #444; 
+            color: #fff; 
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bet-amount { 
+            display: inline-block; 
+            min-width: 40px; 
+            font-size: 20px; 
+            font-weight: bold;
+            color: #ffd700;
+        }
+        select { 
+            padding: 10px; 
+            margin: 5px; 
+            background: #333; 
+            color: #fff; 
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .result { 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .win { background: rgba(0,255,0,0.2); color: #0f0; border: 2px solid #0f0; }
+        .lose { background: rgba(255,0,0,0.2); color: #f00; border: 2px solid #f00; }
+        .push { background: rgba(255,215,0,0.2); color: #ffd700; border: 2px solid #ffd700; }
+        .blackjack-win { 
+            background: linear-gradient(135deg, rgba(255,215,0,0.3) 0%, rgba(255,0,255,0.3) 100%);
+            color: #ffd700; 
+            border: 2px solid #ffd700;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.8); }
+        }
+        .balance { 
+            position: fixed; 
+            top: 70px; 
+            right: 10px; 
+            background: #1a1a1a; 
+            padding: 10px 15px; 
+            border-radius: 8px;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 999;
+        }
+        .hand-title { color: #ffd700; font-size: 18px; margin-bottom: 10px; text-transform: uppercase; }
+        .hand-value { color: #0f0; font-size: 16px; margin-top: 10px; font-weight: bold; }
+        .advice-panel { background: rgba(0,255,0,0.1); border: 2px solid #0f0; padding: 15px; border-radius: 10px; margin: 15px 0; }
+        .advice-title { color: #0f0; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
+        .count-display { display: flex; gap: 20px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .count-box { background: #222; padding: 15px; border-radius: 8px; text-align: center; min-width: 100px; }
+        .count-label { color: #888; font-size: 12px; }
+        .count-value { color: #ffd700; font-size: 24px; font-weight: bold; }
+        .strategy-result { background: rgba(255,215,0,0.1); border: 2px solid #ffd700; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: center; }
+        .strategy-action { font-size: 28px; color: #ffd700; font-weight: bold; margin: 10px 0; }
+        .suit-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0; }
+        .suit-btn { 
+            padding: 15px; 
+            background: #333; 
+            border: 2px solid #555;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .suit-btn.selected { border-color: #ffd700; background: rgba(255,215,0,0.2); }
+        .rank-selector { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 10px 0; }
+        .rank-btn { 
+            padding: 15px 5px;
+            background: #444;
+            border: 2px solid #555;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .rank-btn:active { background: #ffd700; color: #000; }
+        .hand-display { 
+            min-height: 100px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            border: 2px dashed #555;
+        }
+        .hand-display.has-cards { border-style: solid; border-color: #ffd700; }
+        .remove-btn { 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            width: 20px; 
+            height: 20px; 
+            background: #ff4444; 
+            color: #fff; 
+            border-radius: 50%;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .side-bet-win { 
+            background: rgba(0,255,0,0.15); 
+            border-left: 4px solid #0f0; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .side-bet-lose { 
+            background: rgba(255,0,0,0.15); 
+            border-left: 4px solid #f00; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        h3 { color: #ffd700; margin-bottom: 10px; }
+        .game-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+        .game-btn { padding: 15px 25px; font-size: 16px; border: none; border-radius: 10px; font-weight: bold; }
+        .btn-hit { background: #0f0; color: #000; }
+        .btn-stand { background: #f00; color: #fff; }
+        .btn-double { background: #4488ff; color: #fff; }
+        .btn-split { background: #ff00ff; color: #fff; }
+        .btn-deal { background: #ffd700; color: #000; font-size: 20px; padding: 20px 40px; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button onclick="showSection('counting')" id="btn-counting" class="active">📊 Counting</button>
+        <button onclick="showSection('game')" id="btn-game">🎮 Gioca</button>
+    </div>
+    
+    <div class="balance">€<span id="balance">1000</span></div>
+
+    <!-- SEZIONE COUNTING COMPLETA -->
+    <div id="counting" class="section active">
+        <div class="count-display">
+            <div class="count-box">
+                <div class="count-label">Running Count</div>
+                <div class="count-value" id="running-count">0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">True Count</div>
+                <div class="count-value" id="true-count">0.0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">Mazzi</div>
+                <div class="count-value" id="decks-left">6.0</div>
+            </div>
+        </div>
+
+        <div class="advice-panel">
+            <div class="advice-title">💰 Consiglio Puntata</div>
+            <p>Base: <strong id="adv-main">5€</strong> | 21+3: <strong id="adv-213">1€</strong> | Pairs: <strong id="adv-pairs">1€</strong></p>
+            <p>Totale: <strong id="adv-total" style="color: #ffd700; font-size: 20px;">7€</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>🎴 Le tue carte</h3>
+            <p style="color: #888; font-size: 12px;">1. Seleziona il seme:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('player', '♥')">♥<br><span style="font-size: 10px;">Cuori</span></div>
+                <div class="suit-btn red" onclick="selectSuit('player', '♦')">♦<br><span style="font-size: 10px;">Quadri</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♣')">♣<br><span style="font-size: 10px;">Fiori</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♠')">♠<br><span style="font-size: 10px;">Picche</span></div>
+            </div>
+            <p style="color: #888; font-size: 12px;">2. Seleziona il valore:</p>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('player', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('player', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('player', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('player', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('player', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('player', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('player', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('player', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('player', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('player', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('player', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('player', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('player', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="player-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p>Totale: <span id="p-total" style="color: #ffd700; font-size: 20px; font-weight: bold;">0</span> <span id="p-soft"></span></p>
+            <p id="p-pair-info" style="color: #ff00ff;"></p>
+        </div>
+
+        <div class="card">
+            <h3>👥 Carte altri giocatori</h3>
+            <p style="color: #888; font-size: 12px;">Seleziona seme e valore:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('others', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('others', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('others', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('others', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('others', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('others', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('others', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('others', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('others', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('others', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('others', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('others', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('others', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('others', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('others', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="others-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p style="font-size: 12px; color: #888;">Viste: <span id="others-count">0</span> | High: <span id="others-high">0</span> | Low: <span id="others-low">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Carte Dealer</h3>
+            <p style="color: #888; font-size: 12px;">Aggiungi tutte le carte (upcard, hole, hit):</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('dealer', creato il codice completo! Ora ti spiego come salvarlo e usarlo.
+
+## 📋 PASSO 1: Copia il codice
+
+Tocca e tieni premuto sul codice qui sotto, poi seleziona **"Seleziona tutto"** e **"Copia"**:
+
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 10px;
+            padding-top: 60px;
+        }
+        .menu { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: #1a1a1a; 
+            padding: 15px; 
+            display: flex; 
+            gap: 10px;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+        .menu button { 
+            flex: 1; 
+            padding: 10px; 
+            background: #333; 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .menu button.active { background: #ffd700; color: #000; font-weight: bold; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .card { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; }
+        .btn { 
+            padding: 12px 20px; 
+            margin: 5px; 
+            background: #ffd700; 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-secondary { background: #444; color: #fff; }
+        .btn-danger { background: #ff4444; color: #fff; }
+        .game-table { 
+            background: #0d4a26; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin: 20px 0;
+            border: 3px solid #8b4513;
+        }
+        .cards { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .card-item { 
+            width: 60px; 
+            height: 85px; 
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            color: #000; 
+            border-radius: 8px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .card-item .suit { font-size: 24px; line-height: 1; }
+        .card-item .rank { font-size: 18px; }
+        .red { color: #ff0000; }
+        .black { color: #000; }
+        .hidden { 
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            border: 2px solid #ffd700;
+        }
+        .hidden::after {
+            content: '🎰';
+            font-size: 30px;
+        }
+        .bet-controls { display: flex; gap: 15px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .bet-control { background: #222; padding: 15px; border-radius: 10px; text-align: center; min-width: 100px; }
+        .bet-control p { margin-bottom: 8px; color: #aaa; font-size: 12px; }
+        .bet-btn { 
+            padding: 8px 15px; 
+            background: #444; 
+            color: #fff; 
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bet-amount { 
+            display: inline-block; 
+            min-width: 40px; 
+            font-size: 20px; 
+            font-weight: bold;
+            color: #ffd700;
+        }
+        select { 
+            padding: 10px; 
+            margin: 5px; 
+            background: #333; 
+            color: #fff; 
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .result { 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .win { background: rgba(0,255,0,0.2); color: #0f0; border: 2px solid #0f0; }
+        .lose { background: rgba(255,0,0,0.2); color: #f00; border: 2px solid #f00; }
+        .push { background: rgba(255,215,0,0.2); color: #ffd700; border: 2px solid #ffd700; }
+        .blackjack-win { 
+            background: linear-gradient(135deg, rgba(255,215,0,0.3) 0%, rgba(255,0,255,0.3) 100%);
+            color: #ffd700; 
+            border: 2px solid #ffd700;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.8); }
+        }
+        .balance { 
+            position: fixed; 
+            top: 70px; 
+            right: 10px; 
+            background: #1a1a1a; 
+            padding: 10px 15px; 
+            border-radius: 8px;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 999;
+        }
+        .hand-title { color: #ffd700; font-size: 18px; margin-bottom: 10px; text-transform: uppercase; }
+        .hand-value { color: #0f0; font-size: 16px; margin-top: 10px; font-weight: bold; }
+        .advice-panel { background: rgba(0,255,0,0.1); border: 2px solid #0f0; padding: 15px; border-radius: 10px; margin: 15px 0; }
+        .advice-title { color: #0f0; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
+        .count-display { display: flex; gap: 20px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .count-box { background: #222; padding: 15px; border-radius: 8px; text-align: center; min-width: 100px; }
+        .count-label { color: #888; font-size: 12px; }
+        .count-value { color: #ffd700; font-size: 24px; font-weight: bold; }
+        .strategy-result { background: rgba(255,215,0,0.1); border: 2px solid #ffd700; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: center; }
+        .strategy-action { font-size: 28px; color: #ffd700; font-weight: bold; margin: 10px 0; }
+        .suit-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0; }
+        .suit-btn { 
+            padding: 15px; 
+            background: #333; 
+            border: 2px solid #555;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .suit-btn.selected { border-color: #ffd700; background: rgba(255,215,0,0.2); }
+        .rank-selector { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 10px 0; }
+        .rank-btn { 
+            padding: 15px 5px;
+            background: #444;
+            border: 2px solid #555;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .rank-btn:active { background: #ffd700; color: #000; }
+        .hand-display { 
+            min-height: 100px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            border: 2px dashed #555;
+        }
+        .hand-display.has-cards { border-style: solid; border-color: #ffd700; }
+        .remove-btn { 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            width: 20px; 
+            height: 20px; 
+            background: #ff4444; 
+            color: #fff; 
+            border-radius: 50%;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .side-bet-win { 
+            background: rgba(0,255,0,0.15); 
+            border-left: 4px solid #0f0; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .side-bet-lose { 
+            background: rgba(255,0,0,0.15); 
+            border-left: 4px solid #f00; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        h3 { color: #ffd700; margin-bottom: 10px; }
+        .game-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+        .game-btn { padding: 15px 25px; font-size: 16px; border: none; border-radius: 10px; font-weight: bold; }
+        .btn-hit { background: #0f0; color: #000; }
+        .btn-stand { background: #f00; color: #fff; }
+        .btn-double { background: #4488ff; color: #fff; }
+        .btn-split { background: #ff00ff; color: #fff; }
+        .btn-deal { background: #ffd700; color: #000; font-size: 20px; padding: 20px 40px; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button onclick="showSection('counting')" id="btn-counting" class="active">📊 Counting</button>
+        <button onclick="showSection('game')" id="btn-game">🎮 Gioca</button>
+    </div>
+    
+    <div class="balance">€<span id="balance">1000</span></div>
+
+    <!-- SEZIONE COUNTING COMPLETA -->
+    <div id="counting" class="section active">
+        <div class="count-display">
+            <div class="count-box">
+                <div class="count-label">Running Count</div>
+                <div class="count-value" id="running-count">0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">True Count</div>
+                <div class="count-value" id="true-count">0.0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">Mazzi</div>
+                <div class="count-value" id="decks-left">6.0</div>
+            </div>
+        </div>
+
+        <div class="advice-panel">
+            <div class="advice-title">💰 Consiglio Puntata</div>
+            <p>Base: <strong id="adv-main">5€</strong> | 21+3: <strong id="adv-213">1€</strong> | Pairs: <strong id="adv-pairs">1€</strong></p>
+            <p>Totale: <strong id="adv-total" style="color: #ffd700; font-size: 20px;">7€</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>🎴 Le tue carte</h3>
+            <p style="color: #888; font-size: 12px;">1. Seleziona il seme:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('player', '♥')">♥<br><span style="font-size: 10px;">Cuori</span></div>
+                <div class="suit-btn red" onclick="selectSuit('player', '♦')">♦<br><span style="font-size: 10px;">Quadri</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♣')">♣<br><span style="font-size: 10px;">Fiori</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♠')">♠<br><span style="font-size: 10px;">Picche</span></div>
+            </div>
+            <p style="color: #888; font-size: 12px;">2. Seleziona il valore:</p>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('player', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('player', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('player', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('player', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('player', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('player', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('player', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('player', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('player', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('player', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('player', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('player', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('player', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="player-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p>Totale: <span id="p-total" style="color: #ffd700; font-size: 20px; font-weight: bold;">0</span> <span id="p-soft"></span></p>
+            <p id="p-pair-info" style="color: #ff00ff;"></p>
+        </div>
+
+        <div class="card">
+            <h3>👥 Carte altri giocatori</h3>
+            <p style="color: #888; font-size: 12px;">Seleziona seme e valore:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('others', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('others', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('others', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('others', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('others', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('others', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('others', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('others', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('others', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('others', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('others', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('others', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('others', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('others', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('others', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="others-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p style="font-size: 12px; color: #888;">Viste: <span id="others-count">0</span> | High: <span id="others-high">0</span> | Low: <span id="others-low">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Carte Dealer</h3>
+            <p style="color: #888; font-size: 12px;">Aggiungi tutte le carte (upcard, hole, hit):</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('dealer', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('dealer', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('dealer', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('dealer', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('dealer', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('dealer', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('dealer', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('dealer', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('dealer', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('dealer', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="dealer-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p>Totale: <span id="d-total" style="color: #ffd700; font-size: 20px; font-weight: bold;">0</span> <span id="d-status"></span></p>
+        </div>
+
+        <div class="strategy-result" id="strategy-result" style="display: none;">
+            <div class="strategy-action" id="strategy-action">-</div>
+            <p id="strategy-detail"></p>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn" onclick="calculateStrategy()">🎯 CALCOLA STRATEGIA</button>
+            <button class="btn btn-secondary" onclick="resetCounting()">🔄 RESET</button>
+        </div>
+    </div>
+
+    <!-- SEZIONE GIOCO -->
+    <div id="game" class="section">
+        <div class="card">
+            <h3>💰 Puntate</h3>
+            <div class="bet-controls">
+                <div class="bet-control">
+                    <p>🎯 Base (min 5€)</p>
+                    <button class="bet-btn" onclick="changeBet('main', -1)">-</button>
+                    <span class="bet-amount" id="bet-main">5</span>€
+                    <button class="bet-btn" onclick="changeBet('main', 1)">+</button>
+                </div>
+                <div class="bet-control">
+                    <p>🎲 21+3 (min 1€)</p>
+                    <button class="bet-btn" onclick="changeBet('213', -1)">-</button>
+                    <span class="bet-amount" id="bet-213">1</span>€
+                    <button class="bet-btn" onclick="changeBet('213', 1)">+</button>
+                </div>
+                <div class="bet-control">
+                    <p>👫 Pairs (min 1€)</p>
+                    <button class="bet-btn" onclick="changeBet('pairs', -1)">-</button>
+                    <span class="bet-amount" id="bet-pairs">1</span>€
+                    <button class="bet-btn" onclick="changeBet('pairs', 1)">+</button>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 18px;">Totale: <span id="bet-total" style="color: #ffd700; font-size: 24px; font-weight: bold;">7</span>€</p>
+        </div>
+
+        <div class="game-table">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div class="hand-title">🎰 Dealer</div>
+                <div class="cards" id="g-dealer"></div>
+                <div class="hand-value" id="g-d-total"></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <div class="hand-title">🎴 Le tue carte</div>
+                <div class="cards" id="g-player"></div>
+                <div class="hand-value" id="g-p-total"></div>
+            </div>
+        </div>
+
+        <div id="g-result"></div>
+
+        <div class="game-controls">
+            <button class="game-btn btn-deal" id="btn-deal" onclick="deal()">🃏 DEAL</button>
+            <button class="game-btn btn-hit" id="btn-hit" onclick="hit()" style="display:none">🎯 HIT</button>
+            <button class="game-btn btn-stand" id="btn-stand" onclick="stand()" style="display:none">✋ STAND</button>
+            <button class="game-btn btn-double" id="btn-double" onclick="doubleDown()" style="display:none">💰 DOUBLE</button>
+            <button class="game-btn btn-split" id="btn-split" onclick="split()" style="display:none">✂️ SPLIT</button>
+        </div>
+    </div>
+
+    <script>
+        // VARIABILI GLOBALI
+        let balance = 1000;
+        let selectedSuits = { player: null, others: null, dealer: null };
+        let playerCards = [];
+        let othersCards = [];
+        let dealerCards = [];
+        let runningCount = 0;
+        let trueCount = 0;
+        let cardsSeen = 0;
+        
+        let bets = { main: 5, bet213: 1, pairs: 1 };
+        let gameDeck = [];
+        let gPlayerHand = [];
+        let gDealerHand = [];
+        let gameActive = false;
+        let canDouble = false;
+        let canSplit = false;
+        let currentBet = 5;
+
+        // MENU
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            document.getElementById('btn-' + section).classList.add('active');
+        }
+
+        // COUNTING FUNCTIONS
+        function getValue(rank) {
+            if (rank === 'A') return 11;
+            if (['J','Q','K'].includes(rank)) return 10;
+            return parseInt(rank);
+        }
+
+        function selectSuit(who, suit) {
+            selectedSuits[who] = suit;
+            document.querySelectorAll creato il codice completo! Ora ti spiego come salvarlo e usarlo.
+
+## 📋 PASSO 1: Copia il codice
+
+Tocca e tieni premuto sul codice qui sotto, poi seleziona **"Seleziona tutto"** e **"Copia"**:
+
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 10px;
+            padding-top: 60px;
+        }
+        .menu { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: #1a1a1a; 
+            padding: 15px; 
+            display: flex; 
+            gap: 10px;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+        .menu button { 
+            flex: 1; 
+            padding: 10px; 
+            background: #333; 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .menu button.active { background: #ffd700; color: #000; font-weight: bold; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .card { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; }
+        .btn { 
+            padding: 12px 20px; 
+            margin: 5px; 
+            background: #ffd700; 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-secondary { background: #444; color: #fff; }
+        .btn-danger { background: #ff4444; color: #fff; }
+        .game-table { 
+            background: #0d4a26; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin: 20px 0;
+            border: 3px solid #8b4513;
+        }
+        .cards { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .card-item { 
+            width: 60px; 
+            height: 85px; 
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            color: #000; 
+            border-radius: 8px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .card-item .suit { font-size: 24px; line-height: 1; }
+        .card-item .rank { font-size: 18px; }
+        .red { color: #ff0000; }
+        .black { color: #000; }
+        .hidden { 
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            border: 2px solid #ffd700;
+        }
+        .hidden::after {
+            content: '🎰';
+            font-size: 30px;
+        }
+        .bet-controls { display: flex; gap: 15px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .bet-control { background: #222; padding: 15px; border-radius: 10px; text-align: center; min-width: 100px; }
+        .bet-control p { margin-bottom: 8px; color: #aaa; font-size: 12px; }
+        .bet-btn { 
+            padding: 8px 15px; 
+            background: #444; 
+            color: #fff; 
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bet-amount { 
+            display: inline-block; 
+            min-width: 40px; 
+            font-size: 20px; 
+            font-weight: bold;
+            color: #ffd700;
+        }
+        select { 
+            padding: 10px; 
+            margin: 5px; 
+            background: #333; 
+            color: #fff; 
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .result { 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .win { background: rgba(0,255,0,0.2); color: #0f0; border: 2px solid #0f0; }
+        .lose { background: rgba(255,0,0,0.2); color: #f00; border: 2px solid #f00; }
+        .push { background: rgba(255,215,0,0.2); color: #ffd700; border: 2px solid #ffd700; }
+        .blackjack-win { 
+            background: linear-gradient(135deg, rgba(255,215,0,0.3) 0%, rgba(255,0,255,0.3) 100%);
+            color: #ffd700; 
+            border: 2px solid #ffd700;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.8); }
+        }
+        .balance { 
+            position: fixed; 
+            top: 70px; 
+            right: 10px; 
+            background: #1a1a1a; 
+            padding: 10px 15px; 
+            border-radius: 8px;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 999;
+        }
+        .hand-title { color: #ffd700; font-size: 18px; margin-bottom: 10px; text-transform: uppercase; }
+        .hand-value { color: #0f0; font-size: 16px; margin-top: 10px; font-weight: bold; }
+        .advice-panel { background: rgba(0,255,0,0.1); border: 2px solid #0f0; padding: 15px; border-radius: 10px; margin: 15px 0; }
+        .advice-title { color: #0f0; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
+        .count-display { display: flex; gap: 20px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .count-box { background: #222; padding: 15px; border-radius: 8px; text-align: center; min-width: 100px; }
+        .count-label { color: #888; font-size: 12px; }
+        .count-value { color: #ffd700; font-size: 24px; font-weight: bold; }
+        .strategy-result { background: rgba(255,215,0,0.1); border: 2px solid #ffd700; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: center; }
+        .strategy-action { font-size: 28px; color: #ffd700; font-weight: bold; margin: 10px 0; }
+        .suit-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0; }
+        .suit-btn { 
+            padding: 15px; 
+            background: #333; 
+            border: 2px solid #555;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .suit-btn.selected { border-color: #ffd700; background: rgba(255,215,0,0.2); }
+        .rank-selector { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 10px 0; }
+        .rank-btn { 
+            padding: 15px 5px;
+            background: #444;
+            border: 2px solid #555;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .rank-btn:active { background: #ffd700; color: #000; }
+        .hand-display { 
+            min-height: 100px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            border: 2px dashed #555;
+        }
+        .hand-display.has-cards { border-style: solid; border-color: #ffd700; }
+        .remove-btn { 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            width: 20px; 
+            height: 20px; 
+            background: #ff4444; 
+            color: #fff; 
+            border-radius: 50%;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .side-bet-win { 
+            background: rgba(0,255,0,0.15); 
+            border-left: 4px solid #0f0; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .side-bet-lose { 
+            background: rgba(255,0,0,0.15); 
+            border-left: 4px solid #f00; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        h3 { color: #ffd700; margin-bottom: 10px; }
+        .game-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+        .game-btn { padding: 15px 25px; font-size: 16px; border: none; border-radius: 10px; font-weight: bold; }
+        .btn-hit { background: #0f0; color: #000; }
+        .btn-stand { background: #f00; color: #fff; }
+        .btn-double { background: #4488ff; color: #fff; }
+        .btn-split { background: #ff00ff; color: #fff; }
+        .btn-deal { background: #ffd700; color: #000; font-size: 20px; padding: 20px 40px; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button onclick="showSection('counting')" id="btn-counting" class="active">📊 Counting</button>
+        <button onclick="showSection('game')" id="btn-game">🎮 Gioca</button>
+    </div>
+    
+    <div class="balance">€<span id="balance">1000</span></div>
+
+    <!-- SEZIONE COUNTING COMPLETA -->
+    <div id="counting" class="section active">
+        <div class="count-display">
+            <div class="count-box">
+                <div class="count-label">Running Count</div>
+                <div class="count-value" id="running-count">0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">True Count</div>
+                <div class="count-value" id="true-count">0.0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">Mazzi</div>
+                <div class="count-value" id="decks-left">6.0</div>
+            </div>
+        </div>
+
+        <div class="advice-panel">
+            <div class="advice-title">💰 Consiglio Puntata</div>
+            <p>Base: <strong id="adv-main">5€</strong> | 21+3: <strong id="adv-213">1€</strong> | Pairs: <strong id="adv-pairs">1€</strong></p>
+            <p>Totale: <strong id="adv-total" style="color: #ffd700; font-size: 20px;">7€</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>🎴 Le tue carte</h3>
+            <p style="color: #888; font-size: 12px;">1. Seleziona il seme:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('player', '♥')">♥<br><span style="font-size: 10px;">Cuori</span></div>
+                <div class="suit-btn red" onclick="selectSuit('player', '♦')">♦<br><span style="font-size: 10px;">Quadri</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♣')">♣<br><span style="font-size: 10px;">Fiori</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♠')">♠<br><span style="font-size: 10px;">Picche</span></div>
+            </div>
+            <p style="color: #888; font-size: 12px;">2. Seleziona il valore:</p>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('player', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('player', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('player', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('player', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('player', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('player', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('player', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('player', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('player', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('player', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('player', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('player', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('player', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="player-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p>Totale: <span id="p-total" style="color: #ffd700; font-size: 20px; font-weight: bold;">0</span> <span id="p-soft"></span></p>
+            <p id="p-pair-info" style="color: #ff00ff;"></p>
+        </div>
+
+        <div class="card">
+            <h3>👥 Carte altri giocatori</h3>
+            <p style="color: #888; font-size: 12px;">Seleziona seme e valore:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('others', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('others', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('others', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('others', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('others', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('others', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('others', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('others', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('others', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('others', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('others', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('others', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('others', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('others', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('others', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="others-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p style="font-size: 12px; color: #888;">Viste: <span id="others-count">0</span> | High: <span id="others-high">0</span> | Low: <span id="others-low">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Carte Dealer</h3>
+            <p style="color: #888; font-size: 12px;">Aggiungi tutte le carte (upcard, hole, hit):</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('dealer', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('dealer', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('dealer', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('dealer', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('dealer', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('dealer', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('dealer', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('dealer', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('dealer', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('dealer', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="dealer-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p>Totale: <span id="d-total" style="color: #ffd700; font-size: 20px; font-weight: bold;">0</span> <span id="d-status"></span></p>
+        </div>
+
+        <div class="strategy-result" id="strategy-result" style="display: none;">
+            <div class="strategy-action" id="strategy-action">-</div>
+            <p id="strategy-detail"></p>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn" onclick="calculateStrategy()">🎯 CALCOLA STRATEGIA</button>
+            <button class="btn btn-secondary" onclick="resetCounting()">🔄 RESET</button>
+        </div>
+    </div>
+
+    <!-- SEZIONE GIOCO -->
+    <div id="game" class="section">
+        <div class="card">
+            <h3>💰 Puntate</h3>
+            <div class="bet-controls">
+                <div class="bet-control">
+                    <p>🎯 Base (min 5€)</p>
+                    <button class="bet-btn" onclick="changeBet('main', -1)">-</button>
+                    <span class="bet-amount" id="bet-main">5</span>€
+                    <button class="bet-btn" onclick="changeBet('main', 1)">+</button>
+                </div>
+                <div class="bet-control">
+                    <p>🎲 21+3 (min 1€)</p>
+                    <button class="bet-btn" onclick="changeBet('213', -1)">-</button>
+                    <span class="bet-amount" id="bet-213">1</span>€
+                    <button class="bet-btn" onclick="changeBet('213', 1)">+</button>
+                </div>
+                <div class="bet-control">
+                    <p>👫 Pairs (min 1€)</p>
+                    <button class="bet-btn" onclick="changeBet('pairs', -1)">-</button>
+                    <span class="bet-amount" id="bet-pairs">1</span>€
+                    <button class="bet-btn" onclick="changeBet('pairs', 1)">+</button>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 18px;">Totale: <span id="bet-total" style="color: #ffd700; font-size: 24px; font-weight: bold;">7</span>€</p>
+        </div>
+
+        <div class="game-table">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div class="hand-title">🎰 Dealer</div>
+                <div class="cards" id="g-dealer"></div>
+                <div class="hand-value" id="g-d-total"></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <div class="hand-title">🎴 Le tue carte</div>
+                <div class="cards" id="g-player"></div>
+                <div class="hand-value" id="g-p-total"></div>
+            </div>
+        </div>
+
+        <div id="g-result"></div>
+
+        <div class="game-controls">
+            <button class="game-btn btn-deal" id="btn-deal" onclick="deal()">🃏 DEAL</button>
+            <button class="game-btn btn-hit" id="btn-hit" onclick="hit()" style="display:none">🎯 HIT</button>
+            <button class="game-btn btn-stand" id="btn-stand" onclick="stand()" style="display:none">✋ STAND</button>
+            <button class="game-btn btn-double" id="btn-double" onclick="doubleDown()" style="display:none">💰 DOUBLE</button>
+            <button class="game-btn btn-split" id="btn-split" onclick="split()" style="display:none">✂️ SPLIT</button>
+        </div>
+    </div>
+
+    <script>
+        // VARIABILI GLOBALI
+        let balance = 1000;
+        let selectedSuits = { player: null, others: null, dealer: null };
+        let playerCards = [];
+        let othersCards = [];
+        let dealerCards = [];
+        let runningCount = 0;
+        let trueCount = 0;
+        let cardsSeen = 0;
+        
+        let bets = { main: 5, bet213: 1, pairs: 1 };
+        let gameDeck = [];
+        let gPlayerHand = [];
+        let gDealerHand = [];
+        let gameActive = false;
+        let canDouble = false;
+        let canSplit = false;
+        let currentBet = 5;
+
+        // MENU
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            document.getElementById('btn-' + section).classList.add('active');
+        }
+
+        // COUNTING FUNCTIONS
+        function getValue(rank) {
+            if (rank === 'A') return 11;
+            if (['J','Q','K'].includes(rank)) return 10;
+            return parseInt(rank);
+        }
+
+        function selectSuit(who, suit) {
+            selectedSuits[who] = suit;
+            document.querySelectorAll('#' + who + '-hand').forEach(el => {
+                el.parentElement.querySelectorAll('.suit-btn').forEach(btn => btn.classList.remove('selected'));
+            });
+            event.target.classList.add('selected');
+        }
+
+        function addCard(who, rank) {
+            if (!selectedSuits[who]) {
+                alert('Seleziona prima il seme!');
+                return;
+            }
+            
+            const card = { suit: selectedSuits[who], rank, value: getValue(rank) };
+            
+            if (who === 'player') {
+                playerCards.push(card);
+            } else if (who === 'others') {
+                othersCards.push(card);
+                updateCount(rank);
+            } else if (who === 'dealer') {
+                dealerCards.push(card);
+                updateCount(rank);
+            }
+            
+            updateCountingDisplay();
+            updateAdvice();
+        }
+
+        function updateCount(rank) {
+            const val = getValue(rank);
+            if (val >= 2 && val <= 6) runningCount++;
+            else if (val >= 10 || rank === 'A') runningCount--;
+            cardsSeen++;
+            
+            const decks = Math.max(0.5, 6 - (cardsSeen / 52));
+            trueCount = (runningCount / decks).toFixed(1);
+            
+            document.getElementById('running-count').textContent = runningCount;
+            document.getElementById('true-count').textContent = trueCount;
+            document.getElementById('decks-left').textContent = decks.toFixed(1);
+        }
+
+        function calcTotal(cards) {
+            let total = 0, aces = 0;
+            cards.forEach(c => {
+                if (c.rank === 'A') { aces++; total += 11; }
+                else total += c.value;
+            });
+            while (total > 21 && aces > 0) { total -= 10; aces--; }
+            return { total, soft: aces > 0, blackjack: cards.length === 2 && total === 21 };
+        }
+
+        function updateCountingDisplay() {
+            // Player
+            const pDiv = document.getElementById('player-hand');
+            if (playerCards.length === 0) {
+                pDiv.innerHTML = '<span style="color: #666;">Nessuna carta</span>';
+                pDiv.classList.remove('has-cards');
+            } else {
+                pDiv.innerHTML = playerCards.map((c, i) => 
+                    `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}">
+                        <div class="rank">${c.rank}</div>
+                        <div class="suit">${c.suit}</div>
+                        <div class="remove-btn" onclick="removeCard('player', ${i})">×</div>
+                    </div>`
+                ).join('');
+                pDiv.classList.add('has-cards');
+            }
+            const pVal = calcTotal(playerCards);
+            document.getElementById('p-total').textContent = pVal.total;
+            document.getElementById('p-soft').textContent = pVal.soft ? '(Soft)' : '';
+            
+            // Pair info
+            if (playerCards.length === 2 && playerCards[0].rank === playerCards[1].rank) {
+                const suited = playerCards[0].suit === playerCards[1].suit;
+                document.getElementById('p-pair-info').textContent = suited ? '🎉 PERFECT PAIR!' : '👥 Coppia';
+            } else {
+                document.getElementById('p-pair-info').textContent = '';
+            }
+            
+            // Others
+            const oDiv = document.getElementById('others-hand');
+            if (othersCards.length === 0) {
+                oDiv.innerHTML = '<span style="color: #666;">Nessuna carta</span>';
+            } else {
+                oDiv.innerHTML = othersCards.map((c, i) => 
+                    `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}" style="width: 50px; height: 70px;">
+                        <div class="rank" style="font-size: 14px;">${c.rank}</div>
+                        <div class="suit" style="font-size: 20px;">${c.suit}</div>
+                    </div>`
+                ).join('');
+            }
+            document.getElementById('others-count').textContent = othersCards.length;
+            document.getElementById('others-high').textContent = othersCards.filter(c => c.value >= 10).length;
+            document.getElementById('others-low').textContent = othersCards.filter(c => c.value >= 2 && c.value <= 6).length;
+            
+            // Dealer
+            const dDiv = document.getElementById('dealer-hand');
+            if (dealerCards.length === 0) {
+                dDiv.innerHTML = '<span style="color: #666;">Nessuna carta</span>';
+                dDiv.classList.remove('has-cards');
+            } else {
+                dDiv.innerHTML = dealerCards.map((c, i) => {
+                    let label = i === 0 ? '<div style="position: absolute; top: 2px; left: 4px; font-size: 10px; color: #ffd700;">UP</div>' : 
+                               i === 1 ? '<div style="position: absolute; top: 2px; left: 4px; font-size: 10px; color: #f00;">HOLE</div>' :
+                               `<div style="position: absolute; top: 2px; left: 4px; font-size: 10px; color: #48f;">HIT${i-1}</div>`;
+                    return `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}">
+                        ${label}
+                        <div class="rank">${c.rank}</div>
+                        <div class="suit">${c.suit}</div>
+                    </div>`;
+                }).join('');
+                dDiv.classList.add('has-cards');
+            }
+            const dVal = calcTotal(dealerCards);
+            document.getElementById('d-total').textContent = dVal.total;
+            let dStatus = '';
+            if (dVal.total > 21) dStatus = '💥 BUSTO!';
+            else if (dVal.total >= 17) dStatus = '✋ Sta';
+            else dStatus = '🎯 Pesca';
+            document.getElementById('d-status').textContent = dStatus;
+        }
+
+        function removeCard(who, index) {
+            if (who === 'player') playerCards.splice(index, 1);
+            updateCountingDisplay();
+        }
+
+        function updateAdvice() {
+            let mainBet = 5;
+            if (trueCount >= 2) mainBet = 10;
+            else if (trueCount >= 1) mainBet = 7;
+            
+            document.getElementById('adv-main').textContent = mainBet + '€';
+            document.getElementById('adv-213').textContent = '1€';
+            document.getElementById('adv-pairs').textContent = '1€';
+            document.getElementById('adv-total').textContent = (mainBet + 2) + '€';
+        }
+
+        function calculateStrategy() {
+            if (playerCards.length === 0 || dealerCards.length === 0) {
+                alert('Inserisci le tue carte e almeno la carta del dealer!');
+                return;
+            }
+            
+            const pVal = calcTotal(playerCards);
+            const dUpcard = dealerCards[0];
+            const dValue = dUpcard.value;
+            
+            let action = '';
+            let detail = '';
+            
+            // Check blackjack
+            if (pVal.blackjack) {
+                action = '🎰 BLACKJACK!';
+                detail creato il codice completo! Ora ti spiego come salvarlo e usarlo.
+
+## 📋 PASSO 1: Copia il codice
+
+Tocca e tieni premuto sul codice qui sotto, poi seleziona **"Seleziona tutto"** e **"Copia"**:
+
+```html
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Pro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: #0a0a0a; 
+            color: #fff; 
+            padding: 10px;
+            padding-top: 60px;
+        }
+        .menu { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            background: #1a1a1a; 
+            padding: 15px; 
+            display: flex; 
+            gap: 10px;
+            z-index: 1000;
+            border-bottom: 2px solid #ffd700;
+        }
+        .menu button { 
+            flex: 1; 
+            padding: 10px; 
+            background: #333; 
+            color: #fff; 
+            border: none; 
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .menu button.active { background: #ffd700; color: #000; font-weight: bold; }
+        .section { display: none; }
+        .section.active { display: block; }
+        .card { background: #1a1a1a; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; }
+        .btn { 
+            padding: 12px 20px; 
+            margin: 5px; 
+            background: #ffd700; 
+            color: #000; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .btn-secondary { background: #444; color: #fff; }
+        .btn-danger { background: #ff4444; color: #fff; }
+        .game-table { 
+            background: #0d4a26; 
+            padding: 20px; 
+            border-radius: 20px; 
+            margin: 20px 0;
+            border: 3px solid #8b4513;
+        }
+        .cards { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .card-item { 
+            width: 60px; 
+            height: 85px; 
+            background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+            color: #000; 
+            border-radius: 8px; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .card-item .suit { font-size: 24px; line-height: 1; }
+        .card-item .rank { font-size: 18px; }
+        .red { color: #ff0000; }
+        .black { color: #000; }
+        .hidden { 
+            background: linear-gradient(135deg, #cc0000 0%, #8b0000 100%);
+            border: 2px solid #ffd700;
+        }
+        .hidden::after {
+            content: '🎰';
+            font-size: 30px;
+        }
+        .bet-controls { display: flex; gap: 15px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .bet-control { background: #222; padding: 15px; border-radius: 10px; text-align: center; min-width: 100px; }
+        .bet-control p { margin-bottom: 8px; color: #aaa; font-size: 12px; }
+        .bet-btn { 
+            padding: 8px 15px; 
+            background: #444; 
+            color: #fff; 
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bet-amount { 
+            display: inline-block; 
+            min-width: 40px; 
+            font-size: 20px; 
+            font-weight: bold;
+            color: #ffd700;
+        }
+        select { 
+            padding: 10px; 
+            margin: 5px; 
+            background: #333; 
+            color: #fff; 
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .result { 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 1.5rem; 
+            font-weight: bold;
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+        .win { background: rgba(0,255,0,0.2); color: #0f0; border: 2px solid #0f0; }
+        .lose { background: rgba(255,0,0,0.2); color: #f00; border: 2px solid #f00; }
+        .push { background: rgba(255,215,0,0.2); color: #ffd700; border: 2px solid #ffd700; }
+        .blackjack-win { 
+            background: linear-gradient(135deg, rgba(255,215,0,0.3) 0%, rgba(255,0,255,0.3) 100%);
+            color: #ffd700; 
+            border: 2px solid #ffd700;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,215,0,0.5); }
+            50% { box-shadow: 0 0 40px rgba(255,215,0,0.8); }
+        }
+        .balance { 
+            position: fixed; 
+            top: 70px; 
+            right: 10px; 
+            background: #1a1a1a; 
+            padding: 10px 15px; 
+            border-radius: 8px;
+            border: 2px solid #0f0;
+            color: #0f0;
+            font-weight: bold;
+            font-size: 18px;
+            z-index: 999;
+        }
+        .hand-title { color: #ffd700; font-size: 18px; margin-bottom: 10px; text-transform: uppercase; }
+        .hand-value { color: #0f0; font-size: 16px; margin-top: 10px; font-weight: bold; }
+        .advice-panel { background: rgba(0,255,0,0.1); border: 2px solid #0f0; padding: 15px; border-radius: 10px; margin: 15px 0; }
+        .advice-title { color: #0f0; font-size: 18px; margin-bottom: 10px; font-weight: bold; }
+        .count-display { display: flex; gap: 20px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .count-box { background: #222; padding: 15px; border-radius: 8px; text-align: center; min-width: 100px; }
+        .count-label { color: #888; font-size: 12px; }
+        .count-value { color: #ffd700; font-size: 24px; font-weight: bold; }
+        .strategy-result { background: rgba(255,215,0,0.1); border: 2px solid #ffd700; padding: 20px; border-radius: 10px; margin: 15px 0; text-align: center; }
+        .strategy-action { font-size: 28px; color: #ffd700; font-weight: bold; margin: 10px 0; }
+        .suit-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0; }
+        .suit-btn { 
+            padding: 15px; 
+            background: #333; 
+            border: 2px solid #555;
+            border-radius: 10px;
+            font-size: 24px;
+            text-align: center;
+        }
+        .suit-btn.selected { border-color: #ffd700; background: rgba(255,215,0,0.2); }
+        .rank-selector { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin: 10px 0; }
+        .rank-btn { 
+            padding: 15px 5px;
+            background: #444;
+            border: 2px solid #555;
+            border-radius: 5px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .rank-btn:active { background: #ffd700; color: #000; }
+        .hand-display { 
+            min-height: 100px; 
+            background: rgba(0,0,0,0.3); 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            border: 2px dashed #555;
+        }
+        .hand-display.has-cards { border-style: solid; border-color: #ffd700; }
+        .remove-btn { 
+            position: absolute; 
+            top: -5px; 
+            right: -5px; 
+            width: 20px; 
+            height: 20px; 
+            background: #ff4444; 
+            color: #fff; 
+            border-radius: 50%;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .side-bet-win { 
+            background: rgba(0,255,0,0.15); 
+            border-left: 4px solid #0f0; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .side-bet-lose { 
+            background: rgba(255,0,0,0.15); 
+            border-left: 4px solid #f00; 
+            padding: 10px; 
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        h3 { color: #ffd700; margin-bottom: 10px; }
+        .game-controls { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 20px 0; }
+        .game-btn { padding: 15px 25px; font-size: 16px; border: none; border-radius: 10px; font-weight: bold; }
+        .btn-hit { background: #0f0; color: #000; }
+        .btn-stand { background: #f00; color: #fff; }
+        .btn-double { background: #4488ff; color: #fff; }
+        .btn-split { background: #ff00ff; color: #fff; }
+        .btn-deal { background: #ffd700; color: #000; font-size: 20px; padding: 20px 40px; }
+    </style>
+</head>
+<body>
+    <div class="menu">
+        <button onclick="showSection('counting')" id="btn-counting" class="active">📊 Counting</button>
+        <button onclick="showSection('game')" id="btn-game">🎮 Gioca</button>
+    </div>
+    
+    <div class="balance">€<span id="balance">1000</span></div>
+
+    <!-- SEZIONE COUNTING COMPLETA -->
+    <div id="counting" class="section active">
+        <div class="count-display">
+            <div class="count-box">
+                <div class="count-label">Running Count</div>
+                <div class="count-value" id="running-count">0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">True Count</div>
+                <div class="count-value" id="true-count">0.0</div>
+            </div>
+            <div class="count-box">
+                <div class="count-label">Mazzi</div>
+                <div class="count-value" id="decks-left">6.0</div>
+            </div>
+        </div>
+
+        <div class="advice-panel">
+            <div class="advice-title">💰 Consiglio Puntata</div>
+            <p>Base: <strong id="adv-main">5€</strong> | 21+3: <strong id="adv-213">1€</strong> | Pairs: <strong id="adv-pairs">1€</strong></p>
+            <p>Totale: <strong id="adv-total" style="color: #ffd700; font-size: 20px;">7€</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>🎴 Le tue carte</h3>
+            <p style="color: #888; font-size: 12px;">1. Seleziona il seme:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('player', '♥')">♥<br><span style="font-size: 10px;">Cuori</span></div>
+                <div class="suit-btn red" onclick="selectSuit('player', '♦')">♦<br><span style="font-size: 10px;">Quadri</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♣')">♣<br><span style="font-size: 10px;">Fiori</span></div>
+                <div class="suit-btn black" onclick="selectSuit('player', '♠')">♠<br><span style="font-size: 10px;">Picche</span></div>
+            </div>
+            <p style="color: #888; font-size: 12px;">2. Seleziona il valore:</p>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('player', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('player', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('player', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('player', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('player', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('player', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('player', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('player', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('player', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('player', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('player', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('player', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('player', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="player-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p>Totale: <span id="p-total" style="color: #ffd700; font-size: 20px; font-weight: bold;">0</span> <span id="p-soft"></span></p>
+            <p id="p-pair-info" style="color: #ff00ff;"></p>
+        </div>
+
+        <div class="card">
+            <h3>👥 Carte altri giocatori</h3>
+            <p style="color: #888; font-size: 12px;">Seleziona seme e valore:</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('others', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('others', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('others', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('others', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('others', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('others', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('others', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('others', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('others', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('others', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('others', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('others', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('others', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('others', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('others', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('others', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="others-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p style="font-size: 12px; color: #888;">Viste: <span id="others-count">0</span> | High: <span id="others-high">0</span> | Low: <span id="others-low">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Carte Dealer</h3>
+            <p style="color: #888; font-size: 12px;">Aggiungi tutte le carte (upcard, hole, hit):</p>
+            <div class="suit-selector">
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♥')">♥</div>
+                <div class="suit-btn red" onclick="selectSuit('dealer', '♦')">♦</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♣')">♣</div>
+                <div class="suit-btn black" onclick="selectSuit('dealer', '♠')">♠</div>
+            </div>
+            <div class="rank-selector">
+                <button class="rank-btn" onclick="addCard('dealer', 'A')">A</button>
+                <button class="rank-btn" onclick="addCard('dealer', '2')">2</button>
+                <button class="rank-btn" onclick="addCard('dealer', '3')">3</button>
+                <button class="rank-btn" onclick="addCard('dealer', '4')">4</button>
+                <button class="rank-btn" onclick="addCard('dealer', '5')">5</button>
+                <button class="rank-btn" onclick="addCard('dealer', '6')">6</button>
+                <button class="rank-btn" onclick="addCard('dealer', '7')">7</button>
+                <button class="rank-btn" onclick="addCard('dealer', '8')">8</button>
+                <button class="rank-btn" onclick="addCard('dealer', '9')">9</button>
+                <button class="rank-btn" onclick="addCard('dealer', '10')">10</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'J')">J</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'Q')">Q</button>
+                <button class="rank-btn" onclick="addCard('dealer', 'K')">K</button>
+            </div>
+            <div class="hand-display" id="dealer-hand">
+                <span style="color: #666;">Nessuna carta</span>
+            </div>
+            <p>Totale: <span id="d-total" style="color: #ffd700; font-size: 20px; font-weight: bold;">0</span> <span id="d-status"></span></p>
+        </div>
+
+        <div class="strategy-result" id="strategy-result" style="display: none;">
+            <div class="strategy-action" id="strategy-action">-</div>
+            <p id="strategy-detail"></p>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="btn" onclick="calculateStrategy()">🎯 CALCOLA STRATEGIA</button>
+            <button class="btn btn-secondary" onclick="resetCounting()">🔄 RESET</button>
+        </div>
+    </div>
+
+    <!-- SEZIONE GIOCO -->
+    <div id="game" class="section">
+        <div class="card">
+            <h3>💰 Puntate</h3>
+            <div class="bet-controls">
+                <div class="bet-control">
+                    <p>🎯 Base (min 5€)</p>
+                    <button class="bet-btn" onclick="changeBet('main', -1)">-</button>
+                    <span class="bet-amount" id="bet-main">5</span>€
+                    <button class="bet-btn" onclick="changeBet('main', 1)">+</button>
+                </div>
+                <div class="bet-control">
+                    <p>🎲 21+3 (min 1€)</p>
+                    <button class="bet-btn" onclick="changeBet('213', -1)">-</button>
+                    <span class="bet-amount" id="bet-213">1</span>€
+                    <button class="bet-btn" onclick="changeBet('213', 1)">+</button>
+                </div>
+                <div class="bet-control">
+                    <p>👫 Pairs (min 1€)</p>
+                    <button class="bet-btn" onclick="changeBet('pairs', -1)">-</button>
+                    <span class="bet-amount" id="bet-pairs">1</span>€
+                    <button class="bet-btn" onclick="changeBet('pairs', 1)">+</button>
+                </div>
+            </div>
+            <p style="text-align: center; font-size: 18px;">Totale: <span id="bet-total" style="color: #ffd700; font-size: 24px; font-weight: bold;">7</span>€</p>
+        </div>
+
+        <div class="game-table">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div class="hand-title">🎰 Dealer</div>
+                <div class="cards" id="g-dealer"></div>
+                <div class="hand-value" id="g-d-total"></div>
+            </div>
+            
+            <div style="text-align: center;">
+                <div class="hand-title">🎴 Le tue carte</div>
+                <div class="cards" id="g-player"></div>
+                <div class="hand-value" id="g-p-total"></div>
+            </div>
+        </div>
+
+        <div id="g-result"></div>
+
+        <div class="game-controls">
+            <button class="game-btn btn-deal" id="btn-deal" onclick="deal()">🃏 DEAL</button>
+            <button class="game-btn btn-hit" id="btn-hit" onclick="hit()" style="display:none">🎯 HIT</button>
+            <button class="game-btn btn-stand" id="btn-stand" onclick="stand()" style="display:none">✋ STAND</button>
+            <button class="game-btn btn-double" id="btn-double" onclick="doubleDown()" style="display:none">💰 DOUBLE</button>
+            <button class="game-btn btn-split" id="btn-split" onclick="split()" style="display:none">✂️ SPLIT</button>
+        </div>
+    </div>
+
+    <script>
+        // VARIABILI GLOBALI
+        let balance = 1000;
+        let selectedSuits = { player: null, others: null, dealer: null };
+        let playerCards = [];
+        let othersCards = [];
+        let dealerCards = [];
+        let runningCount = 0;
+        let trueCount = 0;
+        let cardsSeen = 0;
+        
+        let bets = { main: 5, bet213: 1, pairs: 1 };
+        let gameDeck = [];
+        let gPlayerHand = [];
+        let gDealerHand = [];
+        let gameActive = false;
+        let canDouble = false;
+        let canSplit = false;
+        let currentBet = 5;
+
+        // MENU
+        function showSection(section) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
+            document.getElementById(section).classList.add('active');
+            document.getElementById('btn-' + section).classList.add('active');
+        }
+
+        // COUNTING FUNCTIONS
+        function getValue(rank) {
+            if (rank === 'A') return 11;
+            if (['J','Q','K'].includes(rank)) return 10;
+            return parseInt(rank);
+        }
+
+        function selectSuit(who, suit) {
+            selectedSuits[who] = suit;
+            document.querySelectorAll('#' + who + '-hand').forEach(el => {
+                el.parentElement.querySelectorAll('.suit-btn').forEach(btn => btn.classList.remove('selected'));
+            });
+            event.target.classList.add('selected');
+        }
+
+        function addCard(who, rank) {
+            if (!selectedSuits[who]) {
+                alert('Seleziona prima il seme!');
+                return;
+            }
+            
+            const card = { suit: selectedSuits[who], rank, value: getValue(rank) };
+            
+            if (who === 'player') {
+                playerCards.push(card);
+            } else if (who === 'others') {
+                othersCards.push(card);
+                updateCount(rank);
+            } else if (who === 'dealer') {
+                dealerCards.push(card);
+                updateCount(rank);
+            }
+            
+            updateCountingDisplay();
+            updateAdvice();
+        }
+
+        function updateCount(rank) {
+            const val = getValue(rank);
+            if (val >= 2 && val <= 6) runningCount++;
+            else if (val >= 10 || rank === 'A') runningCount--;
+            cardsSeen++;
+            
+            const decks = Math.max(0.5, 6 - (cardsSeen / 52));
+            trueCount = (runningCount / decks).toFixed(1);
+            
+            document.getElementById('running-count').textContent = runningCount;
+            document.getElementById('true-count').textContent = trueCount;
+            document.getElementById('decks-left').textContent = decks.toFixed(1);
+        }
+
+        function calcTotal(cards) {
+            let total = 0, aces = 0;
+            cards.forEach(c => {
+                if (c.rank === 'A') { aces++; total += 11; }
+                else total += c.value;
+            });
+            while (total > 21 && aces > 0) { total -= 10; aces--; }
+            return { total, soft: aces > 0, blackjack: cards.length === 2 && total === 21 };
+        }
+
+        function updateCountingDisplay() {
+            // Player
+            const pDiv = document.getElementById('player-hand');
+            if (playerCards.length === 0) {
+                pDiv.innerHTML = '<span style="color: #666;">Nessuna carta</span>';
+                pDiv.classList.remove('has-cards');
+            } else {
+                pDiv.innerHTML = playerCards.map((c, i) => 
+                    `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}">
+                        <div class="rank">${c.rank}</div>
+                        <div class="suit">${c.suit}</div>
+                        <div class="remove-btn" onclick="removeCard('player', ${i})">×</div>
+                    </div>`
+                ).join('');
+                pDiv.classList.add('has-cards');
+            }
+            const pVal = calcTotal(playerCards);
+            document.getElementById('p-total').textContent = pVal.total;
+            document.getElementById('p-soft').textContent = pVal.soft ? '(Soft)' : '';
+            
+            // Pair info
+            if (playerCards.length === 2 && playerCards[0].rank === playerCards[1].rank) {
+                const suited = playerCards[0].suit === playerCards[1].suit;
+                document.getElementById('p-pair-info').textContent = suited ? '🎉 PERFECT PAIR!' : '👥 Coppia';
+            } else {
+                document.getElementById('p-pair-info').textContent = '';
+            }
+            
+            // Others
+            const oDiv = document.getElementById('others-hand');
+            if (othersCards.length === 0) {
+                oDiv.innerHTML = '<span style="color: #666;">Nessuna carta</span>';
+            } else {
+                oDiv.innerHTML = othersCards.map((c, i) => 
+                    `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}" style="width: 50px; height: 70px;">
+                        <div class="rank" style="font-size: 14px;">${c.rank}</div>
+                        <div class="suit" style="font-size: 20px;">${c.suit}</div>
+                    </div>`
+                ).join('');
+            }
+            document.getElementById('others-count').textContent = othersCards.length;
+            document.getElementById('others-high').textContent = othersCards.filter(c => c.value >= 10).length;
+            document.getElementById('others-low').textContent = othersCards.filter(c => c.value >= 2 && c.value <= 6).length;
+            
+            // Dealer
+            const dDiv = document.getElementById('dealer-hand');
+            if (dealerCards.length === 0) {
+                dDiv.innerHTML = '<span style="color: #666;">Nessuna carta</span>';
+                dDiv.classList.remove('has-cards');
+            } else {
+                dDiv.innerHTML = dealerCards.map((c, i) => {
+                    let label = i === 0 ? '<div style="position: absolute; top: 2px; left: 4px; font-size: 10px; color: #ffd700;">UP</div>' : 
+                               i === 1 ? '<div style="position: absolute; top: 2px; left: 4px; font-size: 10px; color: #f00;">HOLE</div>' :
+                               `<div style="position: absolute; top: 2px; left: 4px; font-size: 10px; color: #48f;">HIT${i-1}</div>`;
+                    return `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}">
+                        ${label}
+                        <div class="rank">${c.rank}</div>
+                        <div class="suit">${c.suit}</div>
+                    </div>`;
+                }).join('');
+                dDiv.classList.add('has-cards');
+            }
+            const dVal = calcTotal(dealerCards);
+            document.getElementById('d-total').textContent = dVal.total;
+            let dStatus = '';
+            if (dVal.total > 21) dStatus = '💥 BUSTO!';
+            else if (dVal.total >= 17) dStatus = '✋ Sta';
+            else dStatus = '🎯 Pesca';
+            document.getElementById('d-status').textContent = dStatus;
+        }
+
+        function removeCard(who, index) {
+            if (who === 'player') playerCards.splice(index, 1);
+            updateCountingDisplay();
+        }
+
+        function updateAdvice() {
+            let mainBet = 5;
+            if (trueCount >= 2) mainBet = 10;
+            else if (trueCount >= 1) mainBet = 7;
+            
+            document.getElementById('adv-main').textContent = mainBet + '€';
+            document.getElementById('adv-213').textContent = '1€';
+            document.getElementById('adv-pairs').textContent = '1€';
+            document.getElementById('adv-total').textContent = (mainBet + 2) + '€';
+        }
+
+        function calculateStrategy() {
+            if (playerCards.length === 0 || dealerCards.length === 0) {
+                alert('Inserisci le tue carte e almeno la carta del dealer!');
+                return;
+            }
+            
+            const pVal = calcTotal(playerCards);
+            const dUpcard = dealerCards[0];
+            const dValue = dUpcard.value;
+            
+            let action = '';
+            let detail = '';
+            
+            // Check blackjack
+            if (pVal.blackjack) {
+                action = '🎰 BLACKJACK!';
+                detail = 'Riscuoti 3:2';
+            } else if (pVal.total > 21) {
+                action = '💥 BUST!';
+                detail = 'Hai sballato';
+            } else {
+                // Strategy logic
+                const isPair = playerCards.length === 2 && playerCards[0].rank === playerCards[1].rank;
+                const isSoft = pVal.soft;
+                
+                if (isPair) {
+                    const rank = playerCards[0].rank;
+                    if (rank === 'A' || rank === '8') action = '✂️ SPLIT';
+                    else if (rank === '9' && dValue !== 7 && dValue < 10) action = '✂️ SPLIT';
+                    else if (rank === '7' && dValue <= 7) action = '✂️ SPLIT';
+                    else if (rank === '6' && dValue <= 6) action = '✂️ SPLIT';
+                    else if ((rank === '3' || rank === '2') && dValue <= 7) action = '✂️ SPLIT';
+                    else if (rank === '4' && (dValue === 5 || dValue === 6)) action = '✂️ SPLIT';
+                    else action = isSoft ? getSoftAction(pVal.total, dValue) : getHardAction(pVal.total, dValue);
+                } else if (isSoft) {
+                    action = getSoftAction(pVal.total, dValue);
+                } else {
+                    action = getHardAction(pVal.total, dValue);
+                }
+                
+                detail = 'Contro dealer ' + dUpcard.rank + dUpcard.suit;
+            }
+            
+            document.getElementById('strategy-action').textContent = action;
+            document.getElementById('strategy-detail').textContent = detail;
+            document.getElementById('strategy-result').style.display = 'block';
+        }
+
+        function getSoftAction(total, dValue) {
+            if (total >= 20) return '✋ STAI';
+            if (total === 19) return dValue === 6 ? '💰 DOUBLE' : '✋ STAI';
+            if (total === 18) {
+                if (dValue <= 6) return '💰 DOUBLE';
+                if (dValue >= 9) return '🎯 HIT';
+                return '✋ STAI';
+            }
+            if (total === 17) return (dValue >= 3 && dValue <= 6) ? '💰 DOUBLE' : '🎯 HIT';
+            if (total >= 15 && total <= 16) return (dValue >= 4 && dValue <= 6) ? '💰 DOUBLE' : '🎯 HIT';
+            if (total >= 13 && total <= 14) return (dValue >= 5 && dValue <= 6) ? '💰 DOUBLE' : '🎯 HIT';
+            return '🎯 HIT';
+        }
+
+        function getHardAction(total, dValue) {
+            if (total >= 17) return '✋ STAI';
+            if (total >= 13 && total <= 16) return dValue <= 6 ? '✋ STAI' : '🎯 HIT';
+            if (total === 12) {
+                if (dValue === 2 || dValue === 3) return '🎯 HIT';
+                return dValue <= 6 ? '✋ STAI' : '🎯 HIT';
+            }
+            if (total === 11) return '💰 DOUBLE';
+            if (total === 10) return dValue <= 9 ? '💰 DOUBLE' : '🎯 HIT';
+            if (total === 9) return (dValue >= 3 && dValue <= 6) ? '💰 DOUBLE' : '🎯 HIT';
+            return '🎯 HIT';
+        }
+
+        function resetCounting() {
+            playerCards = [];
+            othersCards = [];
+            dealerCards = [];
+            runningCount = 0;
+            trueCount = 0;
+            cardsSeen = 0;
+            selectedSuits = { player: null, others: null, dealer: null };
+            document.querySelectorAll('.suit-btn').forEach(b => b.classList.remove('selected'));
+            document.getElementById('strategy-result').style.display = 'none';
+            updateCountingDisplay();
+            updateAdvice();
+            document.getElementById('running-count').textContent = '0';
+            document.getElementById('true-count').textContent = '0.0';
+            document.getElementById('decks-left').textContent = '6.0';
+        }
+
+        // GAME FUNCTIONS
+        function changeBet(type, change) {
+            if (type === 'main') {
+                bets.main = Math.max(5, bets.main + change);
+            } else if (type === '213') {
+                bets.bet213 = Math.max(1, bets.bet213 + change);
+            } else if (type === 'pairs') {
+                bets.pairs = Math.max(1, bets.pairs + change);
+            }
+            
+            document.getElementById('bet-main').textContent = bets.main;
+            document.getElementById('bet-213').textContent = bets.bet213;
+            document.getElementById('bet-pairs').textContent = bets.pairs;
+            document.getElementById('bet-total').textContent = bets.main + bets.bet213 + bets.pairs;
+        }
+
+        function createDeck() {
+            gameDeck = [];
+            const suits = ['♥','♦','♣','♠'];
+            const ranks = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+            for (let d = 0; d < 6; d++) {
+                suits.forEach(s => ranks.forEach(r => gameDeck.push({suit: s, rank: r, value: getValue(r)})));
+            }
+            for (let i = gameDeck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [gameDeck[i], gameDeck[j]] = [gameDeck[j], gameDeck[i]];
+            }
+        }
+
+        function deal() {
+            const totalBet = bets.main + bets.bet213 + bets.pairs;
+            if (balance < totalBet) {
+                alert('Balance insufficiente!');
+                return;
+            }
+            
+            if (gameDeck.length < 20) createDeck();
+            
+            balance -= totalBet;
+            currentBet = bets.main;
+            updateBalance();
+            gameActive = true;
+            canDouble = true;
+            canSplit = false;
+            
+            gPlayerHand = [gameDeck.pop(), gameDeck.pop()];
+            gDealerHand = [gameDeck.pop(), gameDeck.pop()];
+            
+            // Check for split possibility
+            if (gPlayerHand[0].rank === gPlayerHand[1].rank) {
+                canSplit = true;
+            }
+            
+            document.getElementById('g-result').innerHTML = '';
+            updateGameDisplay();
+            
+            const pVal = calcTotal(gPlayerHand);
+            const dVal = calcTotal(gDealerHand);
+            
+            if (pVal.blackjack || dVal.blackjack) {
+                endGame();
+            } else {
+                showGameButtons();
+            }
+        }
+
+        function showGameButtons() {
+            document.getElementById('btn-deal').style.display = 'none';
+            document.getElementById('btn-hit').style.display = 'inline-block';
+            document.getElementById('btn-stand').style.display = 'inline-block';
+            document.getElementById('btn-double').style.display = canDouble ? 'inline-block' : 'none';
+            document.getElementById('btn-split').style.display = canSplit ? 'inline-block' : 'none';
+        }
+
+        function hideGameButtons() {
+            document.getElementById('btn-deal').style.display = 'inline-block';
+            document.getElementById('btn-hit').style.display = 'none';
+            document.getElementById('btn-stand').style.display = 'none';
+            document.getElementById('btn-double').style.display = 'none';
+            document.getElementById('btn-split').style.display = 'none';
+        }
+
+        function updateGameDisplay() {
+            // Player
+            const pDiv = document.getElementById('g-player');
+            pDiv.innerHTML = gPlayerHand.map(c => 
+                `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}">
+                    <div class="rank">${c.rank}</div>
+                    <div class="suit">${c.suit}</div>
+                </div>`
+            ).join('');
+            const pVal = calcTotal(gPlayerHand);
+            document.getElementById('g-p-total').textContent = 'Totale: ' + pVal.total + (pVal.soft ? ' (Soft)' : '');
+            
+            // Dealer
+            const dDiv = document.getElementById('g-dealer');
+            if (!gameActive) {
+                dDiv.innerHTML = gDealerHand.map(c => 
+                    `<div class="card-item ${c.suit === '♥' || c.suit === '♦' ? 'red' : 'black'}">
+                        <div class="rank">${c.rank}</div>
+                        <div class="suit">${c.suit}</div>
+                    </div>`
+                ).join('');
+                const dVal = calcTotal(gDealerHand);
+                document.getElementById('g-d-total').textContent = 'Totale: ' + dVal.total;
+            } else {
+                dDiv.innerHTML = `
+                    <div class="card-item ${gDealerHand[0].suit === '♥' || gDealerHand[0].suit === '♦' ? 'red' : 'black'}">
+                        <div class="rank">${gDealerHand[0].rank}</div>
+                        <div class="suit">${gDealerHand[0].suit}</div>
+                    </div>
+                    <div class="card-item hidden"></div>
+                `;
+                document.getElementById('g-d-total').textContent = 'Totale: ?';
+            }
+        }
+
+        function hit() {
+            gPlayerHand.push(gameDeck.pop());
+            canDouble = false;
+            canSplit = false;
+            
+            const val = calcTotal(gPlayerHand);
+            if (val.total > 21) {
+                endGame();
+            } else {
+                updateGameDisplay();
+                showGameButtons();
+            }
+        }
+
+        function stand() {
+            dealerPlay();
+        }
+
+        function doubleDown() {
+            if (balance < currentBet) {
+                alert('Balance insufficiente per raddoppiare!');
+                return;
+            }
+            
